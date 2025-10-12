@@ -1,0 +1,36 @@
+{
+  "name": "oceanguard-hardhat",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "hardhat compile",
+    "clean": "hardhat clean",
+    "test": "hardhat test",
+    "lint": "echo 'no linter configured'",
+    "node": "hardhat node",
+    "deploy": "hardhat deploy --network hardhat",
+    "deploy:sepolia": "hardhat deploy --tags OceanGuard --network sepolia",
+    "vars": "hardhat vars setup"
+  },
+  "devDependencies": {
+    "@fhevm/hardhat-plugin": "latest",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-verify": "^2.0.10",
+    "@typechain/hardhat": "^9.1.0",
+    "chai": "^4.4.1",
+    "ethers": "^6.13.2",
+    "hardhat": "^2.22.10",
+    "hardhat-deploy": "latest",
+    "hardhat-gas-reporter": "^1.0.10",
+    "solidity-coverage": "^0.8.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@fhevm/solidity": "latest"
+  }
+}
+
+
