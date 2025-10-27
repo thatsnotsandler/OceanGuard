@@ -5,9 +5,7 @@ const repoName = "OceanGuard";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
+  typedRoutes: true,
   // Enable static export for GitHub Pages
   output: "export",
   images: { unoptimized: true },
