@@ -6,14 +6,6 @@ import { useParams } from "next/navigation";
 import { OceanGuardABI } from "@/abi/OceanGuardABI";
 import { OceanGuardAddresses } from "@/abi/OceanGuardAddresses";
 
-// Allow dynamic params for client-side routing
-export const dynamicParams = true;
-
-// Generate empty static params for static export
-export async function generateStaticParams() {
-  return [];
-}
-
 export default function ActionDetailsPage() {
   const params = useParams();
   const idParam = Array.isArray(params?.id) ? params?.id[0] : (params?.id as string);
