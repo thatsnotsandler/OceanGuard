@@ -24,8 +24,14 @@ export async function createFhevmInstance(params: {
   if (isMock) {
     const url = mocks[chainId as keyof typeof mocks];
     const { fhevmMockCreateInstance } = await import("./mock/fhevmMock");
-    // 这里简化：直接请求元数据（若失败会抛错）
-    const metadata = await (await fetch("/api/fhevm-metadata?rpcUrl=" + encodeURIComponent(url))).json();
+    // 直接调用本地/远程 JSON-RPC，无需依赖 Next API 路由（支持静态导出）
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "fhevm_relayer_metadata", params: [] })
+    });
+    const json = await res.json();
+    const metadata = json?.result ?? json; // 容错
     return fhevmMockCreateInstance({ rpcUrl: url, chainId, metadata });
   }
 
