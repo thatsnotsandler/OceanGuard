@@ -1,4 +1,4 @@
-name: Pages
+name: Frontend Deploy
 on:
   push:
     branches: ["main"]
@@ -14,32 +14,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
-          cache-dependency-path: action/oceanguard-frontend/package-lock.json
-      - name: Install deps
+          cache: 'npm'
+          cache-dependency-path: action/oceanguard-frontend/package.json
+      - name: Install dependencies (frontend)
         working-directory: action/oceanguard-frontend
         run: npm ci || npm i
-      - name: Build static site
+      - name: Build and export static site
         working-directory: action/oceanguard-frontend
         env:
-          GITHUB_ACTIONS: true
+          GITHUB_PAGES: "true"
         run: |
           npm run build
-          npx next export -o out
+          npm run export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: action/oceanguard-frontend/out
+          path: action/oceanguard-frontend/dist
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
