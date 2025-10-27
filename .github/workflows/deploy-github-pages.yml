@@ -65,8 +65,8 @@ jobs:
       - name: Remove dynamic routes for static export
         working-directory: oceanguard-frontend
         run: |
-          rm -rf app/actions/\[id\]
-          echo "Removed dynamic route /actions/[id] for static export"
+          rm -rf app/actions
+          echo "Removed app/actions for static export"
 
       - name: Build
         working-directory: oceanguard-frontend
