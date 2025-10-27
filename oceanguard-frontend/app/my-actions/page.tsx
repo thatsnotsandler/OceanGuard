@@ -162,7 +162,7 @@ export default function MyActionsPage() {
                         </button>
                         {ocean.decrypted[action.id] !== undefined && (
                           <button
-                            onClick={() => router.push(`/actions/${action.id}`)}
+                            onClick={() => router.push(`/actions?id=${action.id}`)}
                             className="btn btn-secondary"
                             style={{ padding: '8px 16px', fontSize: '13px' }}
                           >

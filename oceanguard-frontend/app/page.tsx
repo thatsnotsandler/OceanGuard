@@ -223,7 +223,7 @@ export default function HomePage() {
                   {a.metadataURI}
                 </div>
                 <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
-                  <Link href={`/actions/${a.id}`}>
+                  <Link href={`/actions?id=${a.id}`}>
                     <button className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '12px' }}>View</button>
                   </Link>
                   {address && a.owner && address.toLowerCase() === a.owner.toLowerCase() ? (
