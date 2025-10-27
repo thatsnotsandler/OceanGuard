@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: action/oceanguard-frontend/package.json
+          cache-dependency-path: oceanguard-frontend/package-lock.json
       - name: Install dependencies (frontend)
-        working-directory: action/oceanguard-frontend
+        working-directory: oceanguard-frontend
         run: npm ci || npm i
       - name: Build and export static site
-        working-directory: action/oceanguard-frontend
+        working-directory: oceanguard-frontend
         env:
           GITHUB_PAGES: "true"
         run: |
@@ -32,7 +32,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: action/oceanguard-frontend/dist
+          path: oceanguard-frontend/dist
   deploy:
     environment:
       name: github-pages
